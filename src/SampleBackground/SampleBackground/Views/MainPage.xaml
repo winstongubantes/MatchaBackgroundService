@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SampleBackground.Views.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+    Title="{Binding Title}">
+
+    <StackLayout>
+        <StackLayout Padding="10">
+            <Image
+                Aspect="AspectFill"
+                HeightRequest="120"
+                Source="{Binding TopNewsThumbnail}" />
+            <Label FontSize="30" Text="{Binding TopNewsTitle}" />
+            <Label LineBreakMode="TailTruncation" Text="{Binding TopNewsDescription}" />
+            <Label
+                LineBreakMode="TailTruncation"
+                Text="{Binding TopNewsAuthor}"
+                TextColor="IndianRed" />
+        </StackLayout>
+        <ListView
+            x:Name="NewsFeedList"
+            HasUnevenRows="True"
+            IsPullToRefreshEnabled="True"
+            IsRefreshing="{Binding IsBusy}"
+            ItemTapped="ListView_OnItemTapped"
+            ItemsSource="{Binding NewsFeed}"
+            RefreshCommand="{Binding RefreshNewsFeedCommand}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image
+                                Aspect="AspectFill"
+                                Source="{Binding Thumbnail}"
+                                WidthRequest="80" />
+                            <StackLayout Grid.Column="1" Padding="5">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    Text="{Binding Title}" />
+                                <Label LineBreakMode="TailTruncation" Text="{Binding Description}" />
+                                <Label
+                                    LineBreakMode="TailTruncation"
+                                    Text="{Binding Author}"
+                                    TextColor="IndianRed" />
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+
+</ContentPage>
