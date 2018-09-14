@@ -80,8 +80,8 @@ After you have implemented the Periodic Task you will need to register it to Bac
  protected override void OnStart()
 {
 	//Register Periodic Tasks
-    BackgroundAggregatorService.AddSchedule(() => new PeriodicWebCall(3));
-    BackgroundAggregatorService.AddSchedule(() => new PeriodicCall2(4));
+    BackgroundAggregatorService.Add(() => new PeriodicWebCall(3));
+    BackgroundAggregatorService.Add(() => new PeriodicCall2(4));
 
 	//Start the background service
 	BackgroundAggregatorService.StartBackgroundService();
