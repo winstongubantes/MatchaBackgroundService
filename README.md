@@ -101,7 +101,8 @@ For more info about Backgrounding in Android in iOS please check the link [HERE]
 You can now run your app that runs a Periodic Task every interval in the Background Service.  We have provided a few good samples to for you to dig in.
 
 ## See it in Action
- 
+
+<img src="https://github.com/winstongubantes/MatchaBackgroundService/blob/master/Images/newsfeed.gif" width="400" title="md">
 
 
 ## Platform Supported
