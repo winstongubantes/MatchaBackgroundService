@@ -5,9 +5,9 @@ A plugin library to simplify Backgrounding in Xamarin.Forms.
 
  ## Get Started
  
-Ever wonder how facebook and twitter process there background to fetch a new content? It is not hard but you have to deal with each platform functionality, It is not generic and simple. 
+Ever wonder how facebook and twitter process there background to fetch a new content? And it looks so slick that when you refresh it was snappy and smooth, Making the user believed that the content is refreshed and updated in a snap when in fact it was done in the background. 
 
-And so the Matcha background plugin was born, it was made to get you started fast with backgrounding without having to deal with platform specific functions.
+The secret behind it was the background service. And so we have created Matcha.BackgroundService to make our backgrounding task be simple and maintenable.
  
  ## Setup
  
