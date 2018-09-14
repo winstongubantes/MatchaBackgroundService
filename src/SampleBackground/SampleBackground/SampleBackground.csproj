@@ -5,14 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Matcha.BackgroundService" Version="1.0.5460" />
     <PackageReference Include="Microsoft.Toolkit.Parsers" Version="4.0.0" />
     <PackageReference Include="MonkeyCache.SQLite" Version="0.1.0.10-beta" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.0.0.396" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Matcha.BackgroundService\Matcha.BackgroundService.csproj" />
   </ItemGroup>
 
   <ItemGroup>

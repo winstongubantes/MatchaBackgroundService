@@ -56,6 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Matcha.BackgroundService">
+      <Version>1.0.5460</Version>
+    </PackageReference>
     <PackageReference Include="MonkeyCache.SQLite">
       <Version>0.1.0.10-beta</Version>
     </PackageReference>
@@ -94,12 +97,8 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Matcha.BackgroundService.Droid\Matcha.BackgroundService.Droid.csproj">
-      <Project>{9d97344a-1852-45c1-afae-0d69d93f565b}</Project>
-      <Name>Matcha.BackgroundService.Droid</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SampleBackground\SampleBackground.csproj">
-      <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
+      <Project>{753cc20f-1b34-4328-9ee3-613575f528c5}</Project>
       <Name>SampleBackground</Name>
     </ProjectReference>
   </ItemGroup>
