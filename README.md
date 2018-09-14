@@ -102,7 +102,7 @@ You can now run your app that runs a Periodic Task every interval in the Backgro
 
 ## See it in Action
 
-<img src="https://github.com/winstongubantes/MatchaBackgroundService/blob/master/Images/newsfeed.gif" width="400" title="md">
+<img src="https://github.com/winstongubantes/MatchaBackgroundService/blob/master/images/newsfeed.gif" width="400" title="md">
 
 
 ## Platform Supported
