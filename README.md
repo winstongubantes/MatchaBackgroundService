@@ -100,7 +100,9 @@ For more info about Backgrounding in Android in iOS please check the link [HERE]
  
 You can now run your app that runs a Periodic Task every interval in the Background Service.  We have provided a few good samples to for you to dig in.
 
-## See it in Action
+## Our Sample
+
+We have created a sample app that has 3 Periodic Task in the background that gets an RSS feed from news outlet like BBC News, CNN News and Washington Post. It refreshes the data every 3 minutes.
 
 <img src="https://github.com/winstongubantes/MatchaBackgroundService/blob/master/images/newsfeed.gif" width="400" title="md">
 
