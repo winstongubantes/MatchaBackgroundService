@@ -11,8 +11,8 @@ And so the Matcha background plugin was born, it was made to get you started fas
  
  ## Setup
  
-* NuGet: [Matcha.Sync.Mobile](http://www.nuget.org/packages/Matcha.Sync.Mobile) [![NuGet](https://img.shields.io/nuget/v/Matcha.Sync.Mobile.svg?label=NuGet)](https://www.nuget.org/packages/Matcha.Sync.Mobile/)
-* `PM> Install-Package Matcha.Sync.Mobile`
+* NuGet: [Matcha.BackgroundService](http://www.nuget.org/packages/Matcha.BackgroundService) [![NuGet](https://img.shields.io/nuget/v/Matcha.BackgroundService.svg?label=NuGet)](https://www.nuget.org/packages/Matcha.BackgroundService/)
+* `PM> Install-Package Matcha.BackgroundService`
 * Install into ALL of your projects, include client projects.
  
  ## For Android
