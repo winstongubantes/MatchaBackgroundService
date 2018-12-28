@@ -88,6 +88,17 @@ After you have implemented the Periodic Task you will need to register it to Bac
 }
  ```
 
+## Stop Periodic Task
+ 
+We can stop the Periodic Task anytime by calling StopBackgroundService method, on our sample we place it on OnSleep() method under App.cs.
+ 
+ ```csharp
+ protected override void OnSleep()
+ {
+     BackgroundAggregatorService.StopBackgroundService();
+ }
+ ```
+
 ## Quirks and Limitation
  
 Keep in mind that the plugin was not design to communicate with UI thread, one way of dealing the transfer of information is through storage (e.g. Sqlite or Settings plugin). Our sample project is using Monkey-Cache storage.
