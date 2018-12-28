@@ -20,7 +20,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <JavaMaximumHeapSize />
@@ -57,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Matcha.BackgroundService">
-      <Version>1.0.5460</Version>
+      <Version>1.0.5461</Version>
     </PackageReference>
     <PackageReference Include="MonkeyCache.SQLite">
       <Version>0.1.0.10-beta</Version>

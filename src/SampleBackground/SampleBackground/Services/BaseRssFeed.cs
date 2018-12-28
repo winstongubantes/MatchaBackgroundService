@@ -24,7 +24,7 @@ namespace SampleBackground.Services
 
         public TimeSpan Interval { get; set; }
 
-        public async Task StartJob()
+        public async Task<bool> StartJob()
         {
             var existingList = Barrel.Current.Get<List<RssData>>("NewsFeeds") ?? new List<RssData>();
 
@@ -52,6 +52,8 @@ namespace SampleBackground.Services
             existingList = existingList.OrderByDescending(e => e.PubDate).ToList();
 
             Barrel.Current.Add("NewsFeeds", existingList, TimeSpan.FromDays(30));
+
+            return true; //return false when you want to stop or trigger only once
         }
     }
 }

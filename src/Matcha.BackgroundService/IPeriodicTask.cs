@@ -8,6 +8,6 @@ namespace Matcha.BackgroundService
     public interface IPeriodicTask
     {
         TimeSpan Interval { get; set; }
-        Task StartJob();
+        Task<bool> StartJob();
     }
 }

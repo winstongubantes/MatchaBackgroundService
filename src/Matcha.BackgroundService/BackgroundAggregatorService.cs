@@ -50,7 +50,7 @@ namespace Matcha.BackgroundService
         {
             foreach (var schedule in _schedules)
             {
-                var observable = SyncRepeatObservable(schedule.Value.StartJob, schedule.Value.Interval);
+                var observable = SyncRepeatObservable(schedule.Value);
                 EventSubscriptions.Add(observable);
             }
         }
@@ -66,15 +66,17 @@ namespace Matcha.BackgroundService
             _schedules.Clear();
         }
 
-        private static IDisposable SyncRepeatObservable(Func<Task> taskFunc, TimeSpan delayInterval)
+        private static IDisposable SyncRepeatObservable(IPeriodicTask schedule)
         {
             return Observable
                 .FromAsync(async () =>
                 {
-                    await taskFunc();
-                    await Task.Delay(delayInterval);
+                    var result = await schedule.StartJob();
+                    await Task.Delay(schedule.Interval);
+                    return result;
                 })
                 .Repeat()
+                .TakeWhile(e=> e)
                 .Subscribe();
         }
     }
