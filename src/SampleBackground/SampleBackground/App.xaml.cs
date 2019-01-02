@@ -58,7 +58,7 @@ namespace SampleBackground
         private static void StartBackgroundService()
         {
             //Rss gets updated every 3 minutes
-            BackgroundAggregatorService.Add(() => new PeriodicBBCNewsRssFeed(1));
+            BackgroundAggregatorService.Add(() => new PeriodicBBCNewsRssFeed(3));
             //BackgroundAggregatorService.Add(() => new PeriodicCNNRssFeed(4));
             BackgroundAggregatorService.Add(() => new PeriodicWashingtonPostRssFeed(5));
 
