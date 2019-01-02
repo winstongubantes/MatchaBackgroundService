@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,28 +29,37 @@ namespace SampleBackground.Services
         {
             var existingList = Barrel.Current.Get<List<RssData>>("NewsFeeds") ?? new List<RssData>();
 
-            var result = await _parserService.Parse(_url);
-
-            foreach (var rssSchema in result)
+            try
             {
-                var isExist = existingList.Any(e => e.Guid == rssSchema.InternalID);
+                var result = await _parserService.Parse(_url);
 
-                if (!isExist)
+                foreach (var rssSchema in result)
                 {
-                    existingList.Add(new RssData
-                    {
-                        Title = rssSchema.Title,
-                        PubDate = rssSchema.PublishDate,
-                        Link = rssSchema.FeedUrl,
-                        Guid = rssSchema.InternalID,
-                        Author = rssSchema.Author,
-                        Thumbnail = string.IsNullOrWhiteSpace(rssSchema.ImageUrl) ? $"https://placeimg.com/80/80/nature" : rssSchema.ImageUrl,
-                        Description = rssSchema.Summary
-                    });
-                }
-            }
+                    var isExist = existingList.Any(e => e.Guid == rssSchema.InternalID);
 
-            existingList = existingList.OrderByDescending(e => e.PubDate).ToList();
+                    if (!isExist)
+                    {
+                        existingList.Add(new RssData
+                        {
+                            Title = rssSchema.Title,
+                            PubDate = rssSchema.PublishDate,
+                            Link = rssSchema.FeedUrl,
+                            Guid = rssSchema.InternalID,
+                            Author = rssSchema.Author,
+                            Thumbnail = string.IsNullOrWhiteSpace(rssSchema.ImageUrl)
+                                ? $"https://placeimg.com/80/80/nature"
+                                : rssSchema.ImageUrl,
+                            Description = rssSchema.Summary
+                        });
+                    }
+                }
+
+                existingList = existingList.OrderByDescending(e => e.PubDate).ToList();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
 
             Barrel.Current.Add("NewsFeeds", existingList, TimeSpan.FromDays(30));
 

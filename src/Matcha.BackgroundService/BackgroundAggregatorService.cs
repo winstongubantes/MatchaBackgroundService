@@ -69,12 +69,8 @@ namespace Matcha.BackgroundService
         private static IDisposable SyncRepeatObservable(IPeriodicTask schedule)
         {
             return Observable
-                .FromAsync(async () =>
-                {
-                    var result = await schedule.StartJob();
-                    await Task.Delay(schedule.Interval);
-                    return result;
-                })
+                .FromAsync(schedule.StartJob)
+                .Delay(schedule.Interval)
                 .Repeat()
                 .TakeWhile(e=> e)
                 .Subscribe();
