@@ -68,6 +68,7 @@ public class PeriodicWebCall : IPeriodicTask
      {
 	     // YOUR CODE HERE
          // THIS CODE WILL BE EXECUTE EVERY INTERVAL
+	 return true; //return false when you want to stop or trigger only once
      }
  }
  ```
