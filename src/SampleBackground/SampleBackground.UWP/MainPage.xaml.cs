@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Matcha.BackgroundService;
+using Matcha.BackgroundService.UWP;
 
 namespace SampleBackground.UWP
 {
@@ -23,9 +25,9 @@ namespace SampleBackground.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new SampleBackground.App(new UwpInitializer()));
+            WindowsPageExtension.Init(this);
 
-            //WindowsPageExtension.Init(this);
+            LoadApplication(new SampleBackground.App(new UwpInitializer()));
         }
     }
 

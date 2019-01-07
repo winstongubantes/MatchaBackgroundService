@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Xamarin.Forms;
@@ -15,41 +17,51 @@ namespace Matcha.BackgroundService.UWP
         public static void Init(WindowsPage page)
         {
             MessagingCenter.Subscribe<StartLongRunningTask>(page, nameof(StartLongRunningTask),
-                async(message) =>
+                (message) =>
                 {
-                    var access = await BackgroundExecutionManager.RequestAccessAsync();
 
-                    switch (access)
+                    Task.Factory.StartNew(() =>
                     {
-                        case Unspecified:
-                            return;
-                        case AllowedMayUseActiveRealTimeConnectivity:
-                            return;
-                        case AllowedWithAlwaysOnRealTimeConnectivity:
-                            return;
-                        case Denied:
-                            return;
-                    }
+                        BackgroundAggregatorService.Instance.Start();
+                    }, TaskCreationOptions.LongRunning);
 
-                    var task = new BackgroundTaskBuilder
-                    {
-                        Name = "My Task",
-                        TaskEntryPoint = typeof(Matcha.BackgroundService.UWP.MatchaBackgrounService).ToString()
-                    };
+                    #region UNUSED CODE
+                    //var access = await BackgroundExecutionManager.RequestAccessAsync();
 
-                    var trigger = new ApplicationTrigger();
-                    task.SetTrigger(trigger);
+                    //Debug.WriteLine(access.ToString());
 
-                    //var condition = new SystemCondition(SystemConditionType.InternetAvailable);
-                    task.Register();
+                    //switch (access)
+                    //{
+                    //    case Unspecified:
+                    //        return;
+                    //    case AllowedMayUseActiveRealTimeConnectivity:
+                    //        return;
+                    //    case AllowedWithAlwaysOnRealTimeConnectivity:
+                    //        return;
+                    //    case Denied:
+                    //        return;
+                    //}
 
-                    await trigger.RequestAsync();
+                    //var task = new BackgroundTaskBuilder
+                    //{
+                    //    Name = "BackgroundService",
+                    //    TaskEntryPoint = "Matcha.BackgroundService.UWP.MatchaBackgrounService"
+                    //};
+
+                    //var trigger = new ApplicationTrigger();
+                    //task.SetTrigger(trigger);
+
+                    ////var condition = new SystemCondition(SystemConditionType.InternetAvailable);
+                    //task.Register();
+
+                    //await trigger.RequestAsync(); 
+                    #endregion
                 });
 
             MessagingCenter.Subscribe<StopLongRunningTask>(page, nameof(StopLongRunningTask),
                 message =>
                 {
-
+                    BackgroundAggregatorService.Instance.Stop();
                 });
         }
     }
