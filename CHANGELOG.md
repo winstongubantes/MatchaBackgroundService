@@ -1,3 +1,6 @@
+# Version 1.0.5463
+* Support for UWP platform was added
+
 # Version 1.0.5461
 * Support for Non-Repeatable execution of IPeriodicTask
 
