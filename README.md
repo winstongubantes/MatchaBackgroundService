@@ -125,4 +125,5 @@ We have created a sample app that has 3 Periodic Task in the background that get
 | ------------------- | :-----------: |
 |Xamarin.iOS|iOS 7+|
 |Xamarin.Android|API 15+|
+|Windows 10 UWP	|10+|
 |.NET Standard|2.0+|
