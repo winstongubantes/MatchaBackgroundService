@@ -20,85 +20,83 @@ You call the "Init" method before all libraries initialization in MainActivity c
 
 ```csharp
 public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
- {
-     protected override void OnCreate(Bundle bundle)
-     {
-	     BackgroundAggregator.Init(this);
-	     
-	     base.OnCreate(bundle);
-         ....// Code for init was here
-     }
- }
- ```
+{
+    protected override void OnCreate(Bundle bundle)
+    {
+        BackgroundAggregator.Init(this);
+
+        base.OnCreate(bundle);
+        ....// Code for init was here
+    }
+}
+```
  
 ## For iOS
  
 You call the "Init" method before all libraries initialization in FinishedLaunching method in FormsApplicationDelegate class.
  
- ```csharp
- 
+```csharp 
 public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
- {
-     public override bool FinishedLaunching(UIApplication app, NSDictionary options)
-     {
-         BackgroundAggregator.Init(this);
-         
-           ....// Code for init was here
-         return base.FinishedLaunching(app, options);
-     }
- }
- 
- ```
+{
+    public override bool FinishedLaunching(UIApplication app, NSDictionary options)
+    {
+        BackgroundAggregator.Init(this);
+
+        ....// Code for init was here
+        return base.FinishedLaunching(app, options);
+    }
+} 
+```
 
 ## Create Periodic Task
  
 You will have to inherit IPeriodicTask interface in which you will supply and implement the interval and StartJob, Periodic Task will be execute every interval once it is registered.
  
- ```csharp
+```csharp
 public class PeriodicWebCall : IPeriodicTask
- {
-     public PeriodicWebCallTest(int seconds)
-     {
-         Interval = TimeSpan.FromSeconds(seconds);
-     }
+{
+    public PeriodicWebCallTest(int seconds)
+    {
+        Interval = TimeSpan.FromSeconds(seconds);
+    }
 
-     public TimeSpan Interval { get; set; }
+    public TimeSpan Interval { get; set; }
      
-     public Task StartJob()
-     {
-	     // YOUR CODE HERE
-         // THIS CODE WILL BE EXECUTE EVERY INTERVAL
-	     return true; //return false when you want to stop or trigger only once
-     }
- }
- ```
+    public Task StartJob()
+    {
+        // YOUR CODE HERE
+        // THIS CODE WILL BE EXECUTE EVERY INTERVAL
+        return true; //return false when you want to stop or trigger only once
+    }
+}
+```
 
 ## Register Periodic Task
  
 After you have implemented the Periodic Task you will need to register it to Background Aggregator Service,  We define it on OnStart() method under App.cs.
  
- ```csharp
- protected override void OnStart()
+```csharp
+protected override void OnStart()
 {
-	//Register Periodic Tasks
+    //Register Periodic Tasks
     BackgroundAggregatorService.Add(() => new PeriodicWebCall(3));
     BackgroundAggregatorService.Add(() => new PeriodicCall2(4));
 
-	//Start the background service
-	BackgroundAggregatorService.StartBackgroundService();
+    //Start the background service
+    BackgroundAggregatorService.StartBackgroundService();
 }
- ```
+```
 
 ## Stop Periodic Task
  
 We can stop the Periodic Task anytime by calling StopBackgroundService method, on our sample we place it on OnSleep() method under App.cs.
  
- ```csharp
- protected override void OnSleep()
- {
-     BackgroundAggregatorService.StopBackgroundService();
- }
- ```
+```csharp
+protected override void OnSleep()
+{
+    BackgroundAggregatorService.StopBackgroundService();
+}
+```
 
 ## Quirks and Limitation
  
