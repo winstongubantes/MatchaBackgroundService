@@ -106,7 +106,6 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="MatchaBackgrounService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindowsPageExtension.cs" />
     <EmbeddedResource Include="Properties\Matcha.BackgroundService.UWP.rd.xml" />

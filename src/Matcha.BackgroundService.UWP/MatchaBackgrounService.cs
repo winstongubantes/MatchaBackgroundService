@@ -10,5 +10,7 @@ namespace Matcha.BackgroundService.UWP
         {
             BackgroundAggregatorService.Instance.Start();
         }
+
+            
     }
 }
