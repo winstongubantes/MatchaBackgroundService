@@ -59,11 +59,11 @@ public sealed partial class MainPage
  {
 	   public MainPage()
 	   {
-				this.InitializeComponent();
+		this.InitializeComponent();
 
-				WindowsPageExtension.Init(this);
+		WindowsPageExtension.Init(this);
 
-				LoadApplication(new SampleBackground.App(new UwpInitializer()));
+		LoadApplication(new SampleBackground.App(new UwpInitializer()));
 	   }
  }
  ```
