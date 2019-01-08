@@ -23,10 +23,10 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompa
  {
      protected override void OnCreate(Bundle bundle)
      {
-	     BackgroundAggregator.Init(this);
-	     
-	     base.OnCreate(bundle);
-         ....// Code for init was here
+	BackgroundAggregator.Init(this);
+
+	base.OnCreate(bundle);
+	   ....// Code for init was here
      }
  }
  ```
@@ -47,7 +47,36 @@ public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsAppli
          return base.FinishedLaunching(app, options);
      }
  }
+ ```
+
+## For UWP
  
+First, You call the "Init" method before all libraries initialization in MainPage class.
+ 
+ ```csharp
+ 
+public sealed partial class MainPage
+ {
+	   public MainPage()
+	   {
+				this.InitializeComponent();
+
+				WindowsPageExtension.Init(this);
+
+				LoadApplication(new SampleBackground.App(new UwpInitializer()));
+	   }
+ }
+ ```
+
+Then you put the line "BackgroundAggregatorService.Instance.Start()" in OnBackgroundActivated method under App.cs of UWP project.
+ 
+  ```csharp
+ 
+protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args)
+{
+	    base.OnBackgroundActivated(args);
+	    BackgroundAggregatorService.Instance.Start();
+}
  ```
 
 ## Create Periodic Task
@@ -106,7 +135,13 @@ Keep in mind that the plugin was not design to communicate with UI thread, one w
 
 Starting with Android Oreo it has already introduced the background execution limits similar to iOS background time limits assuming the app is in background mode or app is closed or minimized, as discuss on this [article](https://blog.xamarin.com/replacing-services-jobs-android-oreo-8-0/). 
 
-For more info about Backgrounding in Android in iOS please check the link [HERE](https://docs.microsoft.com/en-us/xamarin/android/app-fundamentals/services/). 
+The recently supported UWP backgrounding uses In-Process backgrounding which is a bit less resilient than the Out-Process, however In-Process provides simplier approach and this is why we intend to support this platform using this approach.
+
+For more info about Backgrounding in Android please check the link [HERE](https://docs.microsoft.com/en-us/xamarin/android/app-fundamentals/services/). 
+
+For more info about Backgrounding in iOS please check the link [HERE](https://docs.microsoft.com/en-us/xamarin/ios/app-fundamentals/backgrounding/ios-backgrounding-techniques/). 
+
+For more info about Backgrounding in UWP please check the link [HERE](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task). 
 
 ## That's it
  
