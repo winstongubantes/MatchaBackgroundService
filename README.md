@@ -23,10 +23,10 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompa
  {
      protected override void OnCreate(Bundle bundle)
      {
-	     BackgroundAggregator.Init(this);
-	     
-	     base.OnCreate(bundle);
-         ....// Code for init was here
+		BackgroundAggregator.Init(this);
+
+		base.OnCreate(bundle);
+		   ....// Code for init was here
      }
  }
  ```
