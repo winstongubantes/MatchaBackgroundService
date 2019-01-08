@@ -20,15 +20,15 @@ You call the "Init" method before all libraries initialization in MainActivity c
 
 ```csharp
 public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
- {
-     protected override void OnCreate(Bundle bundle)
-     {
-	BackgroundAggregator.Init(this);
-
-	base.OnCreate(bundle);
-	   ....// Code for init was here
-     }
- }
+{
+    protected override void OnCreate(Bundle bundle)
+    {
+        BackgroundAggregator.Init(this);
+        
+        base.OnCreate(bundle);
+        ....// Code for init was here
+    }
+}
  ```
  
 ## For iOS
@@ -36,17 +36,16 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompa
 You call the "Init" method before all libraries initialization in FinishedLaunching method in FormsApplicationDelegate class.
  
  ```csharp
- 
 public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
- {
-     public override bool FinishedLaunching(UIApplication app, NSDictionary options)
-     {
+{
+    public override bool FinishedLaunching(UIApplication app, NSDictionary options)
+    {
          BackgroundAggregator.Init(this);
          
-           ....// Code for init was here
+        ....// Code for init was here
          return base.FinishedLaunching(app, options);
-     }
- }
+    }
+}
  ```
 
 ## For UWP
@@ -54,28 +53,26 @@ public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsAppli
 First, You call the "Init" method before all libraries initialization in MainPage class.
  
  ```csharp
- 
 public sealed partial class MainPage
- {
-	   public MainPage()
-	   {
-				this.InitializeComponent();
-
-				WindowsPageExtension.Init(this);
-
-				LoadApplication(new SampleBackground.App(new UwpInitializer()));
-	   }
- }
+{
+    public MainPage()
+    {
+        this.InitializeComponent();
+        
+        WindowsPageExtension.Init(this);
+        
+        LoadApplication(new SampleBackground.App(new UwpInitializer()));
+    }
+}
  ```
 
 Then you put the line "BackgroundAggregatorService.Instance.Start()" in OnBackgroundActivated method under App.cs of UWP project.
  
   ```csharp
- 
 protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args)
 {
-	    base.OnBackgroundActivated(args);
-	    BackgroundAggregatorService.Instance.Start();
+    base.OnBackgroundActivated(args);
+    BackgroundAggregatorService.Instance.Start();
 }
  ```
 
@@ -85,21 +82,21 @@ You will have to inherit IPeriodicTask interface in which you will supply and im
  
  ```csharp
 public class PeriodicWebCall : IPeriodicTask
- {
-     public PeriodicWebCallTest(int seconds)
-     {
-         Interval = TimeSpan.FromSeconds(seconds);
-     }
+{
+	public PeriodicWebCallTest(int seconds)
+	{
+        Interval = TimeSpan.FromSeconds(seconds);
+	}
 
-     public TimeSpan Interval { get; set; }
-     
-     public Task StartJob()
-     {
-	     // YOUR CODE HERE
-         // THIS CODE WILL BE EXECUTE EVERY INTERVAL
-	     return true; //return false when you want to stop or trigger only once
-     }
- }
+	public TimeSpan Interval { get; set; }
+
+	public Task StartJob()
+	{
+        // YOUR CODE HERE
+        // THIS CODE WILL BE EXECUTE EVERY INTERVAL
+        return true; //return false when you want to stop or trigger only once
+	}
+}
  ```
 
 ## Register Periodic Task
@@ -107,7 +104,7 @@ public class PeriodicWebCall : IPeriodicTask
 After you have implemented the Periodic Task you will need to register it to Background Aggregator Service,  We define it on OnStart() method under App.cs.
  
  ```csharp
- protected override void OnStart()
+protected override void OnStart()
 {
 	//Register Periodic Tasks
     BackgroundAggregatorService.Add(() => new PeriodicWebCall(3));
