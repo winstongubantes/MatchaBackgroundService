@@ -3,14 +3,18 @@
 A plugin library to simplify Backgrounding in Xamarin.Forms. 
  
 
- ## Get Started
+## Get Started
  
 Ever wonder how facebook and twitter process there background to fetch a new content? And it looks so slick that when you refresh it was snappy and smooth, Making the user believed that the content is refreshed and updated in a snap when in fact it was done in the background. 
 
 The secret behind it was the background service. And so we have created Matcha.BackgroundService to make our backgrounding task be simple and maintenable.
- 
- ## Setup
- 
+
+## Build & Test Status
+
+* [![Build status](https://winstongubantes.visualstudio.com/MatchaBackgroundService/_apis/build/status/MatchaBackgroundService-CI)](https://winstongubantes.visualstudio.com/MatchaBackgroundService/_build/latest?definitionId=3)
+
+## Setup
+
 * NuGet: [Matcha.BackgroundService](http://www.nuget.org/packages/Matcha.BackgroundService) [![NuGet](https://img.shields.io/nuget/v/Matcha.BackgroundService.svg?label=NuGet)](https://www.nuget.org/packages/Matcha.BackgroundService/)
 * `PM> Install-Package Matcha.BackgroundService`
 * Install into ALL of your projects, include client projects.
@@ -29,13 +33,13 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompa
         ....// Code for init was here
     }
 }
- ```
+```
  
 ## For iOS
  
 You call the "Init" method before all libraries initialization in FinishedLaunching method in FormsApplicationDelegate class.
  
- ```csharp
+```csharp
 public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
 {
     public override bool FinishedLaunching(UIApplication app, NSDictionary options)
@@ -46,13 +50,13 @@ public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsAppli
          return base.FinishedLaunching(app, options);
     }
 }
- ```
+```
 
 ## For UWP
  
 First, You call the "Init" method before all libraries initialization in MainPage class.
  
- ```csharp
+```csharp
 public sealed partial class MainPage
 {
     public MainPage()
@@ -64,23 +68,23 @@ public sealed partial class MainPage
         LoadApplication(new SampleBackground.App(new UwpInitializer()));
     }
 }
- ```
+```
 
 Then you put the line "BackgroundAggregatorService.Instance.Start()" in OnBackgroundActivated method under App.cs of UWP project.
  
-  ```csharp
+```csharp
 protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args)
 {
-    base.OnBackgroundActivated(args);
-    BackgroundAggregatorService.Instance.Start();
+	base.OnBackgroundActivated(args);
+	BackgroundAggregatorService.Instance.Start();
 }
- ```
+```
 
 ## Create Periodic Task
  
 You will have to inherit IPeriodicTask interface in which you will supply and implement the interval and StartJob, Periodic Task will be execute every interval once it is registered.
  
- ```csharp
+```csharp
 public class PeriodicWebCall : IPeriodicTask
 {
 	public PeriodicWebCallTest(int seconds)
@@ -97,13 +101,13 @@ public class PeriodicWebCall : IPeriodicTask
         return true; //return false when you want to stop or trigger only once
 	}
 }
- ```
+```
 
 ## Register Periodic Task
  
 After you have implemented the Periodic Task you will need to register it to Background Aggregator Service,  We define it on OnStart() method under App.cs.
  
- ```csharp
+```csharp
 protected override void OnStart()
 {
 	//Register Periodic Tasks
@@ -113,18 +117,18 @@ protected override void OnStart()
 	//Start the background service
 	BackgroundAggregatorService.StartBackgroundService();
 }
- ```
+```
 
 ## Stop Periodic Task
  
 We can stop the Periodic Task anytime by calling StopBackgroundService method, on our sample we place it on OnSleep() method under App.cs.
  
- ```csharp
- protected override void OnSleep()
- {
-     BackgroundAggregatorService.StopBackgroundService();
- }
- ```
+```csharp
+protected override void OnSleep()
+{
+	BackgroundAggregatorService.StopBackgroundService();
+}
+```
 
 ## Quirks and Limitation
  
