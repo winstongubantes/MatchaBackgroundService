@@ -46,6 +46,6 @@
      <file src="..\src\Matcha.BackgroundService.iOS\bin\Release\Matcha.BackgroundService.*" target="lib\Xamarin.iOS10" />
 	 
 	 <!--UWP-->
-      <file src="..\src\Matcha.BackgroundService.UWP\bin\x86\Release\Matcha.BackgroundService.*" target="lib\UAP10" />
+      <file src="..\src\Matcha.BackgroundService.UWP\bin\Release\Matcha.BackgroundService.*" target="lib\UAP10" />
    </files>
 </package>
