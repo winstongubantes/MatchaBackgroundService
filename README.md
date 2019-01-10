@@ -94,7 +94,7 @@ public class PeriodicWebCall : IPeriodicTask
 
     public TimeSpan Interval { get; set; }
 
-    public Task StartJob()
+    public Task<bool> StartJob()
     {
         // YOUR CODE HERE
         // THIS CODE WILL BE EXECUTE EVERY INTERVAL
