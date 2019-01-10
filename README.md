@@ -75,8 +75,8 @@ Then you put the line "BackgroundAggregatorService.Instance.Start()" in OnBackgr
 ```csharp
 protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args)
 {
-	base.OnBackgroundActivated(args);
-	BackgroundAggregatorService.Instance.Start();
+    base.OnBackgroundActivated(args);
+    BackgroundAggregatorService.Instance.Start();
 }
 ```
 
@@ -87,19 +87,19 @@ You will have to inherit IPeriodicTask interface in which you will supply and im
 ```csharp
 public class PeriodicWebCall : IPeriodicTask
 {
-	public PeriodicWebCallTest(int seconds)
-	{
+    public PeriodicWebCallTest(int seconds)
+    {
         Interval = TimeSpan.FromSeconds(seconds);
-	}
+    }
 
-	public TimeSpan Interval { get; set; }
+    public TimeSpan Interval { get; set; }
 
-	public Task StartJob()
-	{
+    public Task StartJob()
+    {
         // YOUR CODE HERE
         // THIS CODE WILL BE EXECUTE EVERY INTERVAL
         return true; //return false when you want to stop or trigger only once
-	}
+    }
 }
 ```
 
@@ -110,12 +110,12 @@ After you have implemented the Periodic Task you will need to register it to Bac
 ```csharp
 protected override void OnStart()
 {
-	//Register Periodic Tasks
+    //Register Periodic Tasks
     BackgroundAggregatorService.Add(() => new PeriodicWebCall(3));
     BackgroundAggregatorService.Add(() => new PeriodicCall2(4));
 
-	//Start the background service
-	BackgroundAggregatorService.StartBackgroundService();
+    //Start the background service
+    BackgroundAggregatorService.StartBackgroundService();
 }
 ```
 
@@ -126,7 +126,7 @@ We can stop the Periodic Task anytime by calling StopBackgroundService method, o
 ```csharp
 protected override void OnSleep()
 {
-	BackgroundAggregatorService.StopBackgroundService();
+    BackgroundAggregatorService.StopBackgroundService();
 }
 ```
 
