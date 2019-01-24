@@ -202,7 +202,9 @@ Keep in mind that the plugin was not design to communicate with UI thread, one w
 
 Starting with Android Oreo it has already introduced the background execution limits similar to iOS background time limits assuming the app is in background mode or app is closed or minimized, as discuss on this [article](https://blog.xamarin.com/replacing-services-jobs-android-oreo-8-0/). 
 
-The recently supported UWP backgrounding uses In-Process backgrounding which is a bit less resilient than the Out-Process, however In-Process provides simplier approach and this is why we intend to support this platform using this approach.
+UWP backgrounding uses In-Process backgrounding which is a bit less resilient than the Out-Process, however In-Process provides simplier approach and this is why we intend to support this platform using this approach.
+
+For recently supported Gtk Mac and Tizen are very straightforward it doesn't require native backgrounding, however it runs the task on a separate thread to immitate backgrounding process.
 
 For more info about Backgrounding in Android please check the link [HERE](https://docs.microsoft.com/en-us/xamarin/android/app-fundamentals/services/). 
 
