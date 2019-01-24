@@ -12,7 +12,7 @@ using static Windows.ApplicationModel.Background.BackgroundAccessStatus;
 
 namespace Matcha.BackgroundService.UWP
 {
-    public class WindowsPageExtension
+    public class BackgroundAggregator
     {
         private static string BackServiceName = "BackgroundService";
 
@@ -21,16 +21,7 @@ namespace Matcha.BackgroundService.UWP
             MessagingCenter.Subscribe<StartLongRunningTask>(page, nameof(StartLongRunningTask),
                 async (message) =>
                 {
-
-                    //Task.Factory.StartNew(() =>
-                    //{
-                    //    BackgroundAggregatorService.Instance.Start();
-                    //}, TaskCreationOptions.LongRunning);
-
-                    #region UNUSED CODE
                     var access = await BackgroundExecutionManager.RequestAccessAsync();
-
-                    Debug.WriteLine(access.ToString());
 
                     switch (access)
                     {
@@ -57,7 +48,6 @@ namespace Matcha.BackgroundService.UWP
                     task.Register();
 
                     await trigger.RequestAsync();
-                    #endregion
                 });
 
             MessagingCenter.Subscribe<StopLongRunningTask>(page, nameof(StopLongRunningTask),
