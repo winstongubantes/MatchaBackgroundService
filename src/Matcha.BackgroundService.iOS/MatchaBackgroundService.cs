@@ -17,10 +17,15 @@ namespace Matcha.BackgroundService.iOS
         {
         }
 
+        /// <summary>
+        /// Single Instance of MatchaBackgroundService
+        /// </summary>
         public static MatchaBackgroundService Instance { get; } =
             _instance ?? (_instance = new MatchaBackgroundService());
 
-
+        /// <summary>
+        /// Start the execution of background service
+        /// </summary>
         public void Start()
         {
             if(_isRunning) return;
@@ -32,7 +37,9 @@ namespace Matcha.BackgroundService.iOS
             _isRunning = true;
         }
 
-        //On Expiration Or Invoked
+        /// <summary>
+        /// Stop the execution of background service
+        /// </summary>
         public void Stop()
         {
             _isRunning = false;
