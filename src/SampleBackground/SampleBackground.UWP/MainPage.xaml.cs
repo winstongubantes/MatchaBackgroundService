@@ -25,7 +25,7 @@ namespace SampleBackground.UWP
         {
             this.InitializeComponent();
 
-            WindowsPageExtension.Init(this);
+            BackgroundAggregator.Init(this);
 
             LoadApplication(new SampleBackground.App(new UwpInitializer()));
         }

@@ -52,6 +52,72 @@ public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsAppli
 }
 ```
 
+## For Mac
+ 
+You call the "Init" method before all libraries initialization in DidFinishLaunching method in FormsApplicationDelegate class.
+ 
+```csharp
+public partial class AppDelegate : global::Xamarin.Forms.Platform.MacOS.FormsApplicationDelegate
+{
+    public override void DidFinishLaunching(NSNotification notification)
+    {
+        BackgroundAggregator.Init(this);
+        Forms.Init();
+        LoadApplication(new App());
+        base.DidFinishLaunching(notification);
+    }
+}
+```
+
+## For Tizen
+ 
+You call the "Init" method before all libraries initialization in OnCreate method in FormsApplication class.
+ 
+```csharp
+class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
+{
+    protected override void OnCreate()
+    {
+        base.OnCreate();
+        BackgroundAggregator.Init(this);
+        LoadApplication(new Sample.App());
+    }
+
+    static void Main(string[] args)
+    {
+        var app = new Program();
+        global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+        app.Run(args);
+    }
+}
+```
+
+## For Gtk
+ 
+You call the "Init" method before all libraries initialization in Main method in MainClass class.
+ 
+```csharp
+class MainClass
+{
+    [STAThread]
+    public static void Main(string[] args)
+    {
+        Gtk.Application.Init();
+        Forms.Init();
+        
+        BackgroundAggregator.Init();
+
+        var app = new App();
+        var window = new FormsWindow();
+        window.LoadApplication(app);
+        window.SetApplicationTitle("Game of Life");
+        window.Show();
+
+        Gtk.Application.Run();
+    }
+}
+```
+
 ## For UWP
  
 First, You call the "Init" method before all libraries initialization in MainPage class.
@@ -63,7 +129,7 @@ public sealed partial class MainPage
     {
         this.InitializeComponent();
         
-        WindowsPageExtension.Init(this);
+        BackgroundAggregator.Init(this);
         
         LoadApplication(new SampleBackground.App(new UwpInitializer()));
     }
@@ -160,6 +226,9 @@ We have created a sample app that has 3 Periodic Task in the background that get
 |Platform|Version|
 | ------------------- | :-----------: |
 |Xamarin.iOS|iOS 7+|
+|Xamarin.Mac|All|
 |Xamarin.Android|API 15+|
-|Windows 10 UWP	|10+|
+|Windows 10 UWP|10+|
+|Tizen|4.0+|
+|Gtk|All|
 |.NET Standard|2.0+|

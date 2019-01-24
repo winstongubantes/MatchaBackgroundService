@@ -126,7 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Matcha.BackgroundService">
-      <Version>1.0.5464</Version>
+      <Version>1.0.5473</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.0.6" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
