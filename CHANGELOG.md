@@ -1,3 +1,6 @@
+# Version 1.0.5473
+* Support for GTK, MAC and Tizen platform was added
+
 # Version 1.0.5463
 * Support for UWP platform was added
 
