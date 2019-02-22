@@ -37,6 +37,9 @@
             <group targetFramework="tizen40">
                 <dependency id="System.Reactive" version="3.0.0" exclude="Build,Analyzers" />
             </group>
+            <group targetFramework="net46">
+                <dependency id="System.Reactive" version="3.0.0" exclude="Build,Analyzers" />
+            </group>
         </dependencies>
     </metadata>
     <files> 
@@ -52,5 +55,7 @@
         <file src="..\src\Matcha.BackgroundService.UWP\bin\Release\Matcha.BackgroundService.*" target="lib\UAP10" />
         <!--Tizen-->
         <file src="..\src\Matcha.BackgroundService.Tizen\bin\Release\tizen40\Matcha.BackgroundService.*" target="lib\tizen40" />
+        <!--GTK/net46-->
+        <file src="..\src\Matcha.BackgroundService.Gtk\bin\Release\Matcha.BackgroundService.*" target="lib\net46" />
     </files>
 </package>
